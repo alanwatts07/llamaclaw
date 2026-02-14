@@ -20,8 +20,8 @@ VOLUME ["/root/.openclaw/workspace"]
 
 EXPOSE 18789
 
-# Default: run the gateway headless
-ENV OPENCLAW_SKIP_CHANNELS=1
+# Channels enabled by default (set to 1 to disable Discord/Telegram)
+ENV OPENCLAW_SKIP_CHANNELS=0
 ENV OLLAMA_API_KEY=ollama
 
 ENTRYPOINT ["/app/setup.sh"]

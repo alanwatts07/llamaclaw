@@ -26,12 +26,12 @@ if [ "$1" = "setup" ]; then
     fi
 
     # Ollama endpoint
-    read -p "Ollama endpoint [http://host.docker.internal:11434]: " OLLAMA_URL
-    OLLAMA_URL="${OLLAMA_URL:-http://host.docker.internal:11434}"
+    read -p "Ollama endpoint [https://host.docker.internal:11434]: " OLLAMA_URL
+    OLLAMA_URL="${OLLAMA_URL:-https://host.docker.internal:11434}"
 
     # Model
-    read -p "Model [qwen3:30b]: " MODEL
-    MODEL="${MODEL:-qwen3:30b}"
+    read -p "Model [qwen3:32b]: " MODEL
+    MODEL="${MODEL:-qwen3:32b}"
 
     # Heartbeat interval
     read -p "Heartbeat interval [30m]: " INTERVAL
@@ -79,7 +79,7 @@ if [ "$1" = "setup" ]; then
       "ollama": {
         "baseUrl": "${OLLAMA_URL}/v1",
         "apiKey": "ollama",
-        "api": "openai-completions",
+        "api": "ollama",
         "models": [
           {
             "id": "$MODEL",
@@ -95,7 +95,7 @@ if [ "$1" = "setup" ]; then
     }
   },
   "tools": {
-    "profile": "minimal",
+    "profile": "full",
     "allow": ["exec"],
     "exec": {
       "host": "gateway",
