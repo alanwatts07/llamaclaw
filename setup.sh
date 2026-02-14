@@ -107,7 +107,7 @@ if [ "$1" = "setup" ]; then
     "mode": "local",
     "auth": {
       "mode": "token",
-      "token": "$(head -c 24 /dev/urandom | xxd -p)"
+      "token": "$(head -c 24 /dev/urandom | od -A n -t x1 | tr -d ' \n')"
     }
   }
 }
