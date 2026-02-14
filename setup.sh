@@ -79,7 +79,18 @@ if [ "$1" = "setup" ]; then
       "ollama": {
         "baseUrl": "${OLLAMA_URL}/v1",
         "apiKey": "ollama",
-        "api": "openai-completions"
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "$MODEL",
+            "name": "$MODEL",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 32768,
+            "maxTokens": 8192
+          }
+        ]
       }
     }
   },
@@ -93,7 +104,11 @@ if [ "$1" = "setup" ]; then
   },
   "channels": {},
   "gateway": {
-    "mode": "local"
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "$(head -c 24 /dev/urandom | xxd -p)"
+    }
   }
 }
 JSONEOF
