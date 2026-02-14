@@ -26,8 +26,8 @@ if [ "$1" = "setup" ]; then
     fi
 
     # Ollama endpoint
-    read -p "Ollama endpoint [https://host.docker.internal:11434]: " OLLAMA_URL
-    OLLAMA_URL="${OLLAMA_URL:-https://host.docker.internal:11434}"
+    read -p "Ollama endpoint [http://host.docker.internal:11434]: " OLLAMA_URL
+    OLLAMA_URL="${OLLAMA_URL:-http://host.docker.internal:11434}"
 
     # Model
     read -p "Model [qwen3:32b]: " MODEL
