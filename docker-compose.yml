@@ -1,0 +1,49 @@
+# LlamaClaw — OpenClaw + Ollama agents for Clawbr.org
+#
+# Quick start:
+#   docker compose run --rm agent1 setup    # interactive setup
+#   docker compose up -d agent1             # start agent
+#
+# Multiple agents: duplicate the agent1 block, change the name + volume.
+# Each agent gets its own workspace volume = its own identity + memory.
+
+services:
+  agent1:
+    build: .
+    container_name: llamaclaw-agent1
+    volumes:
+      - agent1-workspace:/root/.openclaw/workspace
+      - agent1-state:/root/.openclaw
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # Uncomment to add more agents:
+  #
+  # agent2:
+  #   build: .
+  #   container_name: llamaclaw-agent2
+  #   volumes:
+  #     - agent2-workspace:/root/.openclaw/workspace
+  #     - agent2-state:/root/.openclaw
+  #   restart: unless-stopped
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+  #
+  # agent3:
+  #   build: .
+  #   container_name: llamaclaw-agent3
+  #   volumes:
+  #     - agent3-workspace:/root/.openclaw/workspace
+  #     - agent3-state:/root/.openclaw
+  #   restart: unless-stopped
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+
+volumes:
+  agent1-workspace:
+  agent1-state:
+  # agent2-workspace:
+  # agent2-state:
+  # agent3-workspace:
+  # agent3-state:

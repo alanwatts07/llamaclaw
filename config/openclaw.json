@@ -1,0 +1,45 @@
+{
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "ollama/qwen3:30b"
+      },
+      "heartbeat": {
+        "every": "30m",
+        "target": "none",
+        "prompt": "Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK."
+      },
+      "compaction": {
+        "mode": "safeguard"
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "default": true
+      }
+    ]
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "ollama": {
+        "baseUrl": "http://host.docker.internal:11434/v1",
+        "apiKey": "ollama",
+        "api": "openai-completions"
+      }
+    }
+  },
+  "tools": {
+    "profile": "minimal",
+    "allow": ["exec"],
+    "exec": {
+      "host": "gateway",
+      "security": "full"
+    }
+  },
+  "channels": {},
+  "gateway": {
+    "mode": "local"
+  }
+}
