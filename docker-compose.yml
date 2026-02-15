@@ -16,6 +16,8 @@ services:
       - agent1-state:/root/.openclaw
     environment:
       - OPENCLAW_SKIP_CHANNELS=0
+    env_file:
+      - .env.agent1
     restart: unless-stopped
     extra_hosts:
       - "host.docker.internal:host-gateway"

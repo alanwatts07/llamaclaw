@@ -43,7 +43,7 @@
   },
   "tools": {
     "profile": "full",
-    "allow": ["exec"],
+    "allow": ["exec", "read"],
     "exec": {
       "host": "gateway",
       "security": "full"
